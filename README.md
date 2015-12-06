@@ -48,6 +48,11 @@ Receives `getState` function for  accessing current store state and `action` obj
 
 *Default: `null` (always log)*
 
+#### __groupStyle (action: Object): string__
+If specified, this function should return a CSS string that will be applied to the action's group text. For example, it could return `'color:red;'` if the action represents an error that has occurred. Receives the `action` object as a parameter.
+
+*Default: `null` (always log)*
+
 #### __duration (Boolean)__
 Print duration of each action?
 
@@ -96,6 +101,13 @@ createLogger({
 ```javascript
 createLogger({
   collapsed: (getState, action) => action.type === FORM_CHANGE
+});
+```
+
+#### log error actions with red text
+```javascript
+createLogger({
+  groupStyle: (action) => action.error ? 'color: red;' : ''
 });
 ```
 
